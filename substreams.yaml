@@ -1,0 +1,31 @@
+specVersion: v0.1.0
+package:
+  name: 'tl_solana_program_transactions_1_0_6'
+  version: v1.0.6
+
+protobuf:
+  files:
+    - output.proto
+  importPaths:
+    - ./proto
+
+binaries:
+  default:
+    type: wasm/rust-v1
+    file: target/wasm32-unknown-unknown/release/substreams.wasm
+
+modules:
+  - name: map_block
+    kind: map
+    inputs:
+      - params: string
+      - source: sf.solana.type.v1.Block
+    output:
+      type: proto:sf.solana.transactions.v1.Output
+
+network: solana
+
+networks:
+  solana:
+    params:
+      map_block: "orca:whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc;orca:9W959DqEETiGZocYWCQPaJ6sBmUzgfxXfqGeTEdp3aQP;orca:DjVE6JNiYqPL2QXyCUUh8rNjHrbz9hXHNYt99MQ59qw1"
